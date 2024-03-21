@@ -1,0 +1,54 @@
+
+
+class Course; // Forward declaration of Course class
+
+class Student {
+private:
+    int studentID;
+    string name;
+    string email;
+    vector<Course*> coursesEnrolled;
+
+public:
+    Student(int id, string n, string e) : studentID(id), name(n), email(e) {}
+
+    // Getter methods
+    int getStudentID() const { return studentID; }
+    string getName() const { return name; }
+    string getEmail() const { return email; }
+
+    // Methods
+    void enrollCourse(Course* course);
+    void dropCourse(Course* course);
+    void viewCourses() const;
+
+    // File handling methods
+    void saveToFile() const;
+    void loadFromFile();
+};
+
+class Course {
+private:
+    string courseCode;
+    string courseName;
+    vector<Student*> studentsEnrolled;
+    int maxCapacity;
+
+public:
+    // Constructor
+    Course(const string& code, const string& name, int capacity) 
+        : courseCode(code), courseName(name), maxCapacity(capacity) {}
+
+    // Getter methods
+    string getCourseCode() const { return courseCode; }
+    string getCourseName() const { return courseName; }
+
+    // Methods
+    bool addStudent(Student* student);
+    void removeStudent(Student* student);
+    void viewStudents() const;
+
+    // File handling methods
+    void saveToFile() const;
+    void loadFromFile();
+};
